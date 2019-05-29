@@ -10,6 +10,12 @@ pipeline {
     }
     stages {
         stage('Sonarqube') {
+            tools {
+                jdk "jdk-1.8.101"
+            }
+            steps {
+                sh 'java -version'
+            }
             environment {
                 scannerHome = tool 'SonarQubeScanner'
             }
