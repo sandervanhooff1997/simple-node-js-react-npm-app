@@ -13,13 +13,11 @@ pipeline {
             tools {
                 jdk "jdk-1.8.101"
             }
-            steps {
-                sh 'java -version'
-            }
             environment {
                 scannerHome = tool 'SonarQubeScanner'
             }
             steps {
+                sh 'java -version'
                 withSonarQubeEnv('SonarCubeServer') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
