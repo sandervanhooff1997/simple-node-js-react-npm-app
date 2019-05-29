@@ -1,18 +1,13 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:6-alpine'
-            args '-p 3000:3000'
-        }
-    }
-    tools {
-        jdk 'jdk8'
-    }
+    agent none
     environment { 
         CI = 'true'
     }
     stages {
         stage('Sonarqube') {
+            agent {
+                jdk: 'jdk8'
+            }
             environment {
                 scannerHome = tool 'SonarQubeScanner'
             }
@@ -27,17 +22,35 @@ pipeline {
             }
         }
         stage('Build') {
+            agent {
+                docker {
+                    image 'node:6-alpine'
+                    args '-p 3000:3000'
+                }
+            }
             steps {
                 sh 'npm install'
             }
         }
         stage('Test') {
+            agent {
+                docker {
+                    image 'node:6-alpine'
+                    args '-p 3000:3000'
+                }
+            }
             steps {
                 sh './jenkins/scripts/test.sh'
             }
         }
 
         stage('Deliver') { 
+            agent {
+                docker {
+                    image 'node:6-alpine'
+                    args '-p 3000:3000'
+                }
+            }
             steps {
                 sh './jenkins/scripts/deliver.sh' 
                 sh './jenkins/scripts/kill.sh' 
