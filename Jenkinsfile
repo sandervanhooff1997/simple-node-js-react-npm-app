@@ -5,14 +5,14 @@ pipeline {
             args '-p 3000:3000'
         }
     }
+    tools {
+        jdk "jdk8"
+    }
     environment { 
         CI = 'true'
     }
     stages {
         stage('Sonarqube') {
-            tools {
-                jdk "jdk-1.8.101"
-            }
             environment {
                 scannerHome = tool 'SonarQubeScanner'
             }
