@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Sonarqube') {
             agent {
-                jdk: 'jdk8'
+                jdk 'jdk8'
             }
             environment {
                 scannerHome = tool 'SonarQubeScanner'
