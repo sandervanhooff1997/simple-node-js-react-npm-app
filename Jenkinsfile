@@ -6,7 +6,7 @@ pipeline {
         }
     }
     tools {
-        jdk 'jdk_1.8.0_151'
+        jdk 'jdk8'
     }
     environment { 
         CI = 'true'
