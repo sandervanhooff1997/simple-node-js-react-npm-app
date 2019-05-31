@@ -14,7 +14,7 @@ pipeline {
             steps {
                 sh 'java -version'
                 withSonarQubeEnv('SonarCubeServer') {
-                    sh "${scannerHome}/bin/sonar-scanner -X"
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
                 timeout(time: 10, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
