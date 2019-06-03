@@ -13,7 +13,7 @@ pipeline {
             }
             steps {
                 sh 'java -version'
-                withSonarQubeEnv('SonarCubeServer') {
+                withSonarQubeEnv('sonarqube') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
                 timeout(time: 10, unit: 'MINUTES') {
